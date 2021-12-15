@@ -37,7 +37,7 @@ You can import your map to work on it whenever you want.
 ## What is map storage mode ?
 You can choose between "vertical" and "horizontal"
 
-A same map will be stored like this in vertical:
+A same map will be stored like this in vertical (only made for Valentin Dury):
 ```
 1    
 1    
