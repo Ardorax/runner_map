@@ -22,7 +22,7 @@ The configuration file is a JSON which is used like this:
 }
 ```
 
-Then you can draw by choosing your sprites in the toolbox.
+Then you can draw by choosing your sprites in the toolbox and using your cursor as a pen like in paint.
 
 `Shift + Click` will draw a full horizontal line.
 
@@ -68,3 +68,10 @@ And like this in horizontal :
   222  222   121    
 11111111111111111111
 ```
+
+## How to make my map larger ?
+Before importing your map, you can add spaces at the end of the first line of the file. The length of the first line will define the length of your map by adding spaces, you increases the global length of your map.
+
+## Am I allowed to use your app for my runner project ?
+Sure, it's made for everyone ! That's just a tool to work faster and it's not considered as cheating.
+If you're really kind you can talk about this tool during your review without forgetting the credit ! ❤️
