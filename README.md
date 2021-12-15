@@ -17,7 +17,7 @@ The configuration file is a JSON which is used like this:
     "sprites": {
         "<id1>":"<hex color1>",
         "<id2>":"<hex color2>",
-        //...
+        "..."
     }
 }
 ```
