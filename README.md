@@ -70,8 +70,9 @@ And like this in horizontal :
 ```
 
 ## How to make my map larger ?
-Before importing your map, you can add spaces at the end of the first line of the file. The length of the first line will define the length of your map by adding spaces, you increases the global length of your map.
+Before importing your map, you can add spaces at the end of the first line of the file. The length of the first line will define the length of your map, by adding spaces you increases the global length of your map.
 
 ## Am I allowed to use your app for my runner project ?
 Sure, it's made for everyone ! That's just a tool to work faster and it's not considered as cheating.
+
 If you're really kind you can talk about this tool during your review without forgetting the credit ! ❤️
