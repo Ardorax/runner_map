@@ -11,13 +11,13 @@ The configuration file is a JSON which is used like this:
 
 ```json
 {
-    "width": <default map width>,
-    "height": <default map height>,
-    "mode": <map storage mode>,
+    "width": "<default map width>",
+    "height": "<default map height>",
+    "mode": "<map storage mode>",
     "sprites": {
         "<id1>":"<hex color1>",
         "<id2>":"<hex color2>",
-        ...
+        //...
     }
 }
 ```
