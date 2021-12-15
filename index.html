@@ -71,7 +71,7 @@
 <script>
     var sprites = {}
     var mode = "horizontal"
-    var current_draw = 0;
+    var current_draw;
     var clicking = false;
     var keys = [];
     var width = 0;
@@ -187,7 +187,7 @@
                 $(this).css("background-color", sprites[parseInt(current_draw)])
                 $(this).attr("block_id", current_draw)
             } else {
-                pen_type = 1
+                pen_type = 0
                 if (keys.includes(16)) {
                     $("#dest_grid > div[row="+$(this).attr("row")+"]").css("background-color", "white")
                     $("#dest_grid > div[row="+$(this).attr("row")+"]").removeAttr("block_id")
