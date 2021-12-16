@@ -29,7 +29,6 @@ Then you can draw by choosing your sprites in the toolbox and using your cursor 
 **Warning :** The following features need time to run on large maps (be patient) :
 
 `Ctrl + Click` will fill an area with the current color (paint bucket).
-
 `Alt + Click` [(Valentin Dury's contribution)](https://github.com/Ardorax) will reapeat a pattern everywhere (eg : if you click on an empty block that is on top of a block of ID 1 all the blocks of ID 1 will be covered by your new block.
 
 Clicking on an existing color will replace it with air.
