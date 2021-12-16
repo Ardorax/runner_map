@@ -15,8 +15,8 @@ The configuration file is a JSON which is used like this:
     "height": "<default map height>",
     "mode": "<map storage mode>",
     "sprites": {
-        "<id1>":"<hex color1>",
-        "<id2>":"<hex color2>",
+        "<id1>":"<hex color || url to image>",
+        "<id2>":"<hex color || url to image>",
         "..."
     }
 }
@@ -25,6 +25,9 @@ The configuration file is a JSON which is used like this:
 Then you can draw by choosing your sprites in the toolbox and using your cursor as a pen like in paint.
 
 `Shift + Click` will draw a full horizontal line.
+**Warning :** The following features need time to run on large maps (be patient) :
+`Ctrl + Click` will fill an area with the current color (paint bucket).
+`Alt + Click` [(Valentin Dury's contribution)](https://github.com/Ardorax) will reapeat a pattern everywhere (eg : if you click on an empty block that is on top of a block of ID 1 all the blocks of ID 1 will be covered by your new block.
 
 Clicking on an existing color will replace it with air.
 
