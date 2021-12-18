@@ -83,25 +83,61 @@
     var height = 0;
     var exported_map = "";
     var pen_type = 0;
+    var imported_map;
+    var load = {y: 0, x: 0}
+
+    function load_map(x, y, max, mode = 0) {
+        let block_id;
+        y++;
+        if (y == height) {
+            y = 0;
+            x++
+        }
+        if (mode == 0)
+            block_id = imported_map[y][x];
+        else
+            block_id = imported_map[x][y];
+
+        while (!Object.keys(sprites).includes(block_id.toString()) && x != max) {
+            y++
+            if (y == height) {
+                y = 0;
+                x++
+            }
+            if (mode == 0)
+                block_id = imported_map[y][x];
+            else
+                block_id = imported_map[x][y];
+        }
+        if (x == max)
+            return
+        if (mode == 0)
+            set_block_id(y.toString(), x.toString(), block_id)
+        else
+            set_block_id((height - 1 - y).toString(), x.toString(), block_id)
+
+        return Promise.resolve()
+            .then(() => requestAnimationFrame(() => load_map(x, y, max, mode)));
+    }
+
     $("#import").on("change", function () {
         let fr = new FileReader();
         fr.onload = function () {
-            let imported_map = fr.result.split('\n').filter(e => e)
+            keys = [];
+            imported_map = fr.result.split('\n').filter(e => e)
             if (mode == "vertical") {
                 generate_grid(imported_map.length, imported_map[0].length)
-                for (j = 0; j < width; j++)
-                    for (i = height - 1; i >= 0; i--) {
-                        let block_id = imported_map[j][i];
-                        console.log(block_id)
-                        set_block_id(height - 1 - i, j, block_id)
-                    }
+                for (i = 0; i < width / 5; i++)
+                    load_map(i * 5, -1, (i + 1) * 5, 1);
+                // for (j = 0; j < width; j++)
+                //     for (i = height - 1; i >= 0; i--) {
+                //         let block_id = imported_map[j][i];
+                //         set_block_id((height - 1 - i).toString(), j.toString(), block_id)
+                //     }
             } else {
                 generate_grid(imported_map[0].length, imported_map.length)
-                for (j = 0; j < height; j++)
-                    for (i = 0; i < width; i++) {
-                        let block_id = imported_map[j][i];
-                        set_block_id(j, i, block_id)
-                    }
+                for (i = 0; i < width / 5; i++)
+                    load_map(i * 5, -1, (i + 1) * 5);
             }
         }
         fr.readAsText($(this).get(0).files[0])
@@ -132,6 +168,10 @@
         })
     })
 
+    $("#dest_grid").on("mouseleave mouseenter", function (e) {
+        keys = [];
+    })
+
     function generate_colors () {
         $("#toolbox").html("")
         for (block in sprites) {
@@ -141,7 +181,7 @@
                 $("#toolbox").append("<div block_id="+block+" style=\"background-image: url("+sprites[block]+")\">"+block+"</div>")
         }
         $("#toolbox > div").click(function() {
-            current_draw = parseInt($(this).attr("block_id"));
+            current_draw = $(this).attr("block_id");
         })
     }
 
@@ -153,14 +193,15 @@
         else
             elem = $("#dest_grid > div[row="+ row +"]")
         elem.attr("block_id", id)
-        if (id == null) {
+        if (!Object.keys(sprites).includes(id)) {
             elem.css("background-color", "white");
             elem.css("background-image", "");
-        } else
+        } else {
             if (sprites[id].startsWith("#"))
                 elem.css("background-color", sprites[id]).css("background-image", "");
             else
                 elem.css("background-image", "url("+sprites[id]+")").css("background-color", "white");
+        }
     }
 
     $("#export").click(function() {
@@ -236,7 +277,6 @@
                 }
         })
         $("#dest_grid > div").mousedown(function() {
-            console.log(keys)
             if ($(this).attr("block_id") != current_draw) {
                 pen_type = 1
                 if (keys.includes(17)) {
@@ -244,7 +284,6 @@
                 } else if (keys.includes(16)) {
                     set_block_id($(this).attr("row"), "", current_draw)
                 } else if (keys.includes(18) && (under_block = $("div[column="+$(this).attr("column")+"][row="+(parseInt($(this).attr("row")) + 1)+"]").attr("block_id")) != undefined) {
-                    console.log(under_block)
                     cover_block(under_block, current_draw)
                 }
                 set_block_id($(this).attr("row"), $(this).attr("column"), current_draw)
