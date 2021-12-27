@@ -227,7 +227,7 @@
 
     function cover_block(id1, id2)
     {
-        for (j = height - 1; j > 0; j--)
+        for (j = 0; j < height; j++)
             for (i = width - 1; i >= 0; i--) {
                 let block_id = $("#dest_grid > div[column="+i+"][row="+j+"]").attr("block_id");
                 let block_over = $("#dest_grid > div[column="+i+"][row="+(j - 1)+"]").attr("block_id");
